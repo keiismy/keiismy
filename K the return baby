@@ -1,0 +1,61 @@
+
+<!---
+keiismy/keiismy is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+You can click the Preview link to take a look at your changes.
+--->
+import pygame
+
+# Initialize pygame
+pygame.init()
+
+# Set the window size
+window_size = (400, 400)
+
+# Create the window
+screen = pygame.display.set_mode(window_size)
+
+# Set the title
+pygame.display.set_caption("My Indie Game")
+
+# Create the player's sprite
+player_image = pygame.image.load("player.png")
+player_rect = player_image.get_rect()
+
+# Set the player's starting position
+player_rect.x = 200
+player_rect.y = 200
+
+# Set the player's speed
+player_speed = 5
+
+# Create a font for rendering text
+font = pygame.font.Font(None, 36)
+
+# Set the game's starting state
+running = True
+
+# Run the game loop
+while running:
+    # Check for events
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    
+    # Check for key presses
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        player_rect.x -= player_speed
+    if keys[pygame.K_RIGHT]:
+        player_rect.x += player_speed
+    if keys[pygame.K_UP]:
+        player_rect.y -= player_speed
+    if keys[pygame.K_DOWN]:
+        player_rect.y += player_speed
+    
+    # Update the screen
+    screen.fill((0, 0, 0))
+    screen.blit(player_image, player_rect)
+    pygame.display.flip()
+
+# Quit pygame
+pygame.quit()
